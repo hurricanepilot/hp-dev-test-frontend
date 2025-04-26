@@ -57,6 +57,7 @@ export class TaskListComponent {
 
     ngOnInit() {
         this.searchTask.pipe(debounceTime(300)).subscribe(() => this.listTasks());
+        this.searchTask.next();
     }
 
     ngOnDestroy() {
