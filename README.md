@@ -10,23 +10,22 @@ The UI is implemented using Angular's Material component set, styled using simpl
 
 This project requires the companion backend project to be running in order to successfully function - the expectation is that the backend service is running on `http://localhost:8080`, though this can be overridden in the `environment.ts` files as necessary.
 
-To build and run the project, clone the repository and then, in the project root execute:
+To build and run the project, clone the repository and then in the project root execute:
 
 ```bash
 npm install
 ng serve --configuration=development --open
 ```
 
-This should install, build, serve and the launch the app in a browser. Provided the backend is running, you should now be able to add Tasks and view/filter existing Tasks.
+This should install, build, serve and then launch the web app in a browser. Provided the backend is running, you should now be able to add Tasks and view/filter existing Tasks.
 
-if you just want to build the project, use:
+If you just want to build the project, use:
 
 ```bash
 npm run build:prod
 ```
 
-to build the project after running the test suite.
-
+which will build the project after running the test suite.
 
 ### Usage
 
@@ -40,13 +39,13 @@ The UI is simple, and shows the list of currently defined Tasks, and allows you 
 
 ### Testing & Coverage
 
-Karma/Jasmine tests are included and have been configured to provide coverage reports via the `jasmine-html-reporter` plugin. If you run:
+Karma/Jasmine tests are included and have been configured to provide coverage reports via the `jasmine-html-reporter` plugin. If you run the following command in the project root:
 
 ```bash
 ng test
 ```
 
-in the project root, the full test suite will execute and the coverage report will be available from:
+the full test suite will execute and the coverage report will be available from:
 
 > `./coverage/hp-dev-test-frontend/index.html`
 
