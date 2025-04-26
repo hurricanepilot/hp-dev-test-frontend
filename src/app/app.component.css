@@ -1,0 +1,43 @@
+/* Overall content style/theme */
+.header,
+.content {
+    margin: auto;
+    max-width: 800px;
+}
+
+/* filter row styling */
+
+.task-filters {
+    width: 100%;
+    display: flex;
+}
+
+.task-filter-field {
+    flex-grow: 1;
+}
+
+.task-filter-field mat-form-field {
+    width: 100%
+}
+
+.task-filters span {
+    margin: 5px;
+}
+
+/* action row styling */
+.task-actions {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.task-actions span {
+    margin: 5px;
+}
+
+
+/* task addition styling */
+task-form {
+    margin: 1em;
+}
+
+

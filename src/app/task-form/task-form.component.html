@@ -1,0 +1,61 @@
+<mat-accordion>
+    <mat-expansion-panel #addTaskPanel class="add-task-panel" hideToggle="true" expanded="true">
+        <mat-expansion-panel-header class="prevent-click">Add a New Task</mat-expansion-panel-header>
+
+        <form [formGroup]="taskForm" class="add-task-form">
+
+            <table>
+                <tr>
+                    <td>
+                        <mat-form-field hintLabel="Max 80 characters">
+                            <mat-label>Title</mat-label>
+                            <input matInput #title maxlength="80" placeholder="My New Task" formControlName="title" />
+                            <mat-hint align="end">{{title.value.length}} / 80</mat-hint>
+                        </mat-form-field>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <mat-form-field>
+                            <mat-label>Description</mat-label>
+                            <textarea matInput #description maxlength="2000"
+                                placeholder="We should really get around to...."
+                                formControlName="description"></textarea>
+                            <mat-hint align="start"><strong>Be civil</strong> </mat-hint>
+                            <mat-hint align="end">{{description.value.length}} / 2000</mat-hint>
+                        </mat-form-field>
+                    </td>
+                </tr>
+            </table>
+
+            <table>
+                <tr>
+                    <td>
+                        <mat-form-field>
+                            <mat-label>Due Date</mat-label>
+                            <input matInput [matDatepicker]="picker" required="true" formControlName="date">
+                            <mat-hint>MM/DD/YYYY</mat-hint>
+                            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                        </mat-form-field>
+                    </td>
+                    <td>
+                        <mat-form-field>
+                            <mat-label>Pick a time</mat-label>
+                            <input matInput [matTimepicker]="timepicker" required="true" formControlName="time">
+                            <mat-timepicker-toggle matIconSuffix [for]="timepicker" />
+                            <mat-timepicker #timepicker />
+                        </mat-form-field>
+                    </td>
+                </tr>
+            </table>
+
+        </form>
+
+        <mat-action-row>
+            <button mat-button (click)="cancel()">Cancel</button>
+            <button mat-button (click)="save()">Save</button>
+        </mat-action-row>
+
+    </mat-expansion-panel>
+</mat-accordion>

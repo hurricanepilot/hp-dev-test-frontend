@@ -1,0 +1,11 @@
+.prevent-click {
+    pointer-events: none;
+}
+
+.add-task-form table {
+    width: 100%;
+}
+
+mat-form-field {
+    width: 100%;
+}

@@ -1,0 +1,76 @@
+/* theming */
+
+.status-NEW {
+    background-color: rgb(255, 252, 228);
+}
+
+.status-IN_PROGRESS {
+    background-color: rgb(237, 239, 255);
+}
+
+.status-DEFERRED {
+    background-color: rgb(255, 235, 223);
+}
+
+.status-COMPLETED {
+    background-color: rgb(227, 255, 223);
+}
+
+/* table styling */
+
+mat-row.task-detail-row {
+    min-height: 0;
+}
+
+.task-row:hover {
+    filter: brightness(0.95);
+}
+
+.expand-row-button {
+    margin-left: auto;
+    transition: transform 150ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.expand-row-button-expanded {
+    transform: rotate(180deg);
+}
+
+.task-detail-wrapper {
+    overflow: hidden;
+    opacity: 0;
+    min-height: 0px;
+    height: 0px;
+    transition: opacity 300ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.task-detail-wrapper-expanded {
+    opacity: 1;
+    min-height: unset;
+    height: unset;
+}
+
+.task-row {
+    cursor: pointer;
+}
+
+.task-row mat-cell {
+    border-bottom-width: 0;
+}
+
+/* detail table */
+
+.task-detail-table {
+    margin-bottom: 5px;
+}
+
+.task-detail-table td {
+    padding: 5px;
+}
+
+.update-task-form {
+    margin-top: 15px;
+}
+
+mat-form-field {
+    width: 100%;
+}

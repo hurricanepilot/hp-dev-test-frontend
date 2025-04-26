@@ -1,0 +1,14 @@
+# Compiled output
+dist/
+tmp/
+
+# Node
+node_modules/
+npm-debug.log
+
+# Visual Studio Code
+.vscode/
+
+.angular/cache
+.sass-cache/
+coverage/

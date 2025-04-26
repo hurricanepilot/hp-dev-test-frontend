@@ -1,0 +1,44 @@
+<header class="header">
+    <h1>{{title}}</h1>
+</header>
+
+<main class="content">
+
+    <section id="task-filters" aria-label="Task Filters">
+        <div class="task-filters">
+            <span class="task-filter-field">
+                <mat-form-field>
+                    <mat-label>Task Filter</mat-label>
+                    <input id="task-filter" matInput (keyup)="applyFilter(input.value)" placeholder="title or description filter" #input>
+                </mat-form-field>
+            </span>
+            <span class="task-filter-completed-toggle">
+                <mat-slide-toggle labelPosition="after" (change)="setHideCompleted($event.checked)">Hide
+                    COMPLETED</mat-slide-toggle>
+            </span>
+        </div>
+    </section>
+
+    <section id="task-actions" aria-label="Task Actions">
+        <div class="task-actions">
+            <span class="task-action-add-task">
+                <button mat-icon-button matTooltip="Add a new Task" matTooltipPosition="above" matTooltipHideDelay="250"
+                    (click)="showAddTaskPanel(true)">
+                    <mat-icon aria-hidden="false" aria-label="add task icon" fontIcon="add_task"></mat-icon>
+                </button>
+            </span>
+        </div>
+    </section>
+
+    <section id="task-table" aria-label="Task Table">
+
+        @if(showAddTask) {
+        <task-form id="task-form" [showPanel]="showAddTask" (cancelled)="showAddTaskPanel(false)" (saved)="saveTask($event)" />
+        }
+
+        <task-list [filter]="filter" [hideCompleted]="hideCompleted" (taskUpdated)="updateTask($event)"
+            (taskDeleted)="deleteTask($event)" />
+
+    </section>
+
+</main>
