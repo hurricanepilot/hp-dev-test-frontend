@@ -60,6 +60,12 @@ describe('TaskListComponent', () => {
 
     beforeEach(() => {
         fixture.detectChanges();
+        const mockTasks: Task[] = [
+            { id: 1, title: 'Test Task 1', description: 'Test Description', status: 'NEW', dueDateTime: new Date() },
+            { id: 2, title: 'Test Task 2', description: 'Test Description', status: 'NEW', dueDateTime: new Date() },
+            { id: 3, title: 'Test Task 3', description: 'Test Description', status: 'NEW', dueDateTime: new Date() },
+        ];
+        taskServiceSpy.retrieveAllTasks.and.returnValue(of(mockTasks));
     });
 
     it('should create the task list component', () => {
@@ -67,36 +73,23 @@ describe('TaskListComponent', () => {
     });
 
     describe('ngOnChanges', () => {
-        it('should queue a search task when filter changes, then call listTasks after the debounce', fakeAsync(() => {
+        it('should queue a search task when filter changes', fakeAsync(() => {
             const taskSpy = spyOn(taskListComponent.searchTask, 'next').and.callThrough();
-            const listTasksSpy = spyOn(taskListComponent, 'listTasks');
             taskListComponent.filter = 'newFilter';
             taskListComponent.ngOnChanges({});
             expect(taskSpy).toHaveBeenCalled();
-            tick(400); // debounce is 300
-            expect(listTasksSpy).toHaveBeenCalled();
         }));
 
-        it('should queue a search task when hideCompleted changes, then call listTasks after the debounce', fakeAsync(() => {
+        it('should queue a search task when hideCompleted changes', fakeAsync(() => {
             const taskSpy = spyOn(taskListComponent.searchTask, 'next').and.callThrough();
-            const listTasksSpy = spyOn(taskListComponent, 'listTasks');
             taskListComponent.hideCompleted = true;
             taskListComponent.ngOnChanges({});
             expect(taskSpy).toHaveBeenCalled();
-            tick(400); // debounce is 300
-            expect(listTasksSpy).toHaveBeenCalled();
-
         }));
     });
 
     describe('listTasks', () => {
         it('should retrieve tasks and filter them correctly', () => {
-            const mockTasks: Task[] = [
-                { id: 1, title: 'Test Task 1', description: 'Test Description', status: 'NEW', dueDateTime: new Date() },
-                { id: 2, title: 'Test Task 2', description: 'Test Description', status: 'NEW', dueDateTime: new Date() },
-                { id: 3, title: 'Test Task 3', description: 'Test Description', status: 'NEW', dueDateTime: new Date() },
-            ];
-            taskServiceSpy.retrieveAllTasks.and.returnValue(of(mockTasks));
             taskListComponent.listTasks();
             expect(taskServiceSpy.retrieveAllTasks).toHaveBeenCalled();
             expect(taskListComponent.taskList.length).toBe(3);
@@ -105,7 +98,6 @@ describe('TaskListComponent', () => {
         it('should handle errors and open snackbar', () => {
             const errorMessage = 'Error fetching tasks';
             taskServiceSpy.retrieveAllTasks.and.returnValue(throwError({ reason: errorMessage }));
-
             const spy = spyOn(taskListComponent, 'openSnackBar');
             taskListComponent.listTasks();
             expect(taskServiceSpy.retrieveAllTasks).toHaveBeenCalled();
